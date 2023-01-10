@@ -7,7 +7,7 @@ reg  [31:0] r_max;
 reg  [31:0] r_activation;
 wire [7:0]  w_index;
 
-integer i;
+//integer i;
 
 quantizer u_quantizer(
     .clk(clk), .reset_n(reset_n),
@@ -24,24 +24,18 @@ initial begin
 $display("initialize value [%d]", $time);
     reset_n      = 1;
     clk          = 0;
-	r_max        = 32'h 437F0000; // 255
-	r_activation = 32'h 41CC0000; // 25.5
+
 
 // reset_n gen
 $display("Reset! [%d]", $time);
-# 50
-    reset_n = 0;
 # 10
+    reset_n = 0;
+# 80
     reset_n = 1;
 # 10
+	r_max        = 32'h 43800000; // 256
+	r_activation = 32'h 41000000; // 8
 
-/*
-@(posedge clk);
-    for(i=0; i<3; i = i+1) begin
-        @(negedge clk);
-        r_activation = r_activation + 0.3;
-    end
-*/
 
 # 100
 $display("Finish! [%d]", $time);

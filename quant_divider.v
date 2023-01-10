@@ -22,7 +22,7 @@ module quant_divider(
         
         end else begin
             r_unit  <= {1'd0, i_unit[31:1]}; // right shift
-            if ((i_activation == 32'd0) | (i_activation < i_unit)) begin
+            if ((i_activation == 32'd0) | (i_activation < i_unit)) begin 
                 r_index <= {i_index[6:0], 1'd0};
                 r_left  <= i_activation;
 
