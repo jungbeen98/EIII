@@ -17,9 +17,9 @@ initial begin
 $display("initialize value [%d]", $time);
     reset_n      = 1;
     clk          = 0;
-	i_weight     = 0;
-	i_activation = 0;
-	
+   i_weight     = 0;
+   i_activation = 0;
+   
 // reset_n gen
 $display("Reset! [%d]", $time);
 # 50
@@ -28,25 +28,21 @@ $display("Reset! [%d]", $time);
     reset_n = 1;
 # 10
 @(posedge clk);
-    for(i=0; i<16; i = i+1) begin
+    for(i=0; i<5; i = i+1) begin
         @(negedge clk);
         i_weight = i_weight+1;
         i_activation = i_activation+1;
     end
 
-/*
+#10
+    i_weight = 0;
+
 @(posedge clk);
-$display("Start! [%d]", $time);
-	for(i=-10; i<10; i = i+1) begin
-		@(negedge clk);
-		i_valid = 1;
-		i_value = i;
-		@(posedge clk);
-	end
-	@(negedge clk);
-	i_valid = 0;
-	i_value = 0;
-*/
+    for(i=6; i<16; i = i+1) begin
+        @(negedge clk);
+        i_weight = i_weight+1;
+        i_activation = i_activation+1;
+    end
 
 # 100
 $display("Finish! [%d]", $time);
